@@ -1,0 +1,24 @@
+name: 'Flyway Migrate'
+ 
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      
+        - uses: actions/checkout@v4
+          with:
+            ref: main
+        
+
+        - uses: red-gate/FlywayGitHubAction@main
+          with:
+            url: "${{ secrets.DATABRICKS_JDBC_URL }}"
+            user: "${{ secrets.DATABRICKS_USER }}"
+            password: "${{ secrets.DATABRICKS_TOKEN }}"
+            locations: filesystem:./flyway/sql
+            
