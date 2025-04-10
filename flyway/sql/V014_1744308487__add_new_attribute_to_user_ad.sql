@@ -1,0 +1,1 @@
+ALTER TABLE qmc_bronze.user_ad ADD COLUMN object_guid VARCHAR(100)
